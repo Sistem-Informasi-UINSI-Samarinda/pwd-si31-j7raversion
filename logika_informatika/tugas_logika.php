@@ -5,7 +5,7 @@
     <style>
         table { border-collapse: collapse; width: 80%; margin: auto; }
         th, td { border: 1px solid #333; text-align: center; padding: 8px; }
-        th { background-color: #007bff; color: white; }
+        th { background-color: #4b7097ff; color: white; }
         h2 { text-align: center; }
         h3 { text-align: center; }
         body { background-color: #eef3f7; font-family: Arial, sans-serif; }
@@ -33,18 +33,18 @@
             foreach ($values as $Q) {
                 $notP = !$P;
                 $notQ = !$Q;
-                $and = $P && $Q;
-                $or = $P || $Q;
-                $implikasi = (!$P) || $Q;
-                $biimplikasi = ($P && $Q) || (!$P && !$Q);
+                $implikasi = $P || $notQ;
+                $biimplikasi = ($P && $Q) || ($notP && $notQ);
+                $pertama = $P || $notQ;
+                $kedua = $biimplikasi;
 
                 //hitungan
                 $tabel5 = ($P || $Q) && $notQ;
                 $tabel6 = $P && ($notP || $notQ);
-                $tabel7 = ((!$P) || $notP) || $Q;
-                $tabel8 =  $P || (($P && $Q) || (!$P && !$Q));
-                $tabel9 = ((!$notP) || $notQ) || ($P && $Q);
-                $tabel10 = (($P || $notQ) || !$P) || (!$P && !$Q);
+                $tabel7 = ($notP) && $Q;
+                $tabel8 = $P || $biimplikasi;
+                $tabel9 = ($implikasi == $P);
+                $tabel10 =  (!$pertama) || $kedua;
         
                 echo "<tr>";
                 echo "<td>$P</td>";
